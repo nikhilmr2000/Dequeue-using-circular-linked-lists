@@ -75,10 +75,16 @@ int main(){
        if(front==NULL && rear==NULL){
            printf("Queue is Empty\n");
        }
+       else if(front==rear || count==1){
+    
+           front=NULL;rear=NULL;
+           count--;
+       }
        else{
             front=front->next;
             rear->next=front;
             count--;
+            
        }
        
    }
@@ -90,7 +96,12 @@ int main(){
         if(front==NULL && rear==NULL){
            printf("Queue is Empty\n");
        }
+       else if(front==rear || count==1){
+           front=NULL;rear=NULL;
+           count--;
+       }
        else{
+           
            struct node *temp,*prev;
            temp=front;
            
@@ -100,9 +111,11 @@ int main(){
            }
            prev->next=front;
            rear=prev;
-           
            count--;
+          
        }
+       
+       
    }
    
    
@@ -111,11 +124,21 @@ int main(){
        
        temp=front;
        
-       while(rear->next!=temp->next){
+       if(front==NULL && rear==NULL){
+           printf("Queue is empty");
+       }
+       else if(temp==rear){
+           printf("%d",temp->data);
+       }
+       else{
+           
+           while(rear->next!=temp->next){
            printf("%d ",temp->data);
            temp=temp->next;
        }
        printf("%d ",temp->data);
+           
+       }
    }
    
     enqueuefront(10);
@@ -141,15 +164,25 @@ int main(){
     printf("\n");
     dequeuerear();
     display();
+    printf("\n");
+    dequeuefront();
+    display();
+    printf("\n");
+    dequeuefront();
+    display();
+    printf("\n");
+    dequeuerear();
+    display();
+    
+    
 }
-
 
 
 
 //SAMPLE OUTPUT
 
 // Enter the maximum number of nodes5
-// 10 
+// 10
 // 20 10 
 // 30 20 10 
 // 30 20 10 40 
@@ -158,3 +191,6 @@ int main(){
 // 30 20 10 40 50 
 // 20 10 40 50 
 // 20 10 40 
+// 10 40 
+// 40
+// Queue is empty
